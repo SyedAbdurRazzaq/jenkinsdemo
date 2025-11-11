@@ -37,15 +37,16 @@ pipeline {
 
         stage('Terraform Deployment') {
             steps {
-                dir('deployment') {
-                    sh '''
-                        terraform init
-                        terraform plan
-                        terraform apply -auto-approve
-                    '''
+                script {
+                    dir('deployment') {
+                        sh '''
+                            terraform init
+                            terraform plan
+                            terraform apply -auto-approve
+                        '''
+                    }
                 }
             }
         }
     }
- }
 }
